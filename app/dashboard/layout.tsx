@@ -10,7 +10,7 @@ function layout({
 }) {
 	return (
 		<div>
-			<div className="md:w-64 fixed md:block hidden">
+			<div className="md:w-64 fixed md:block hidden h-sc">
 				<Sidenav />
 			</div>
 			<div className="md:ml-64">
