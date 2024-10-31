@@ -1,12 +1,22 @@
 "use client";
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import "@toast-ui/editor/dist/toastui-editor.css";
 
 import { Editor } from "@toast-ui/react-editor";
 import { Button } from "@/components/ui/button";
 import { Copy } from "lucide-react";
-function OutputSection() {
+
+interface props {
+	aiOutput: string;
+}
+function OutputSection({ aiOutput }: props) {
 	const editorRef: any = useRef();
+
+	useEffect(() => {
+		const editorInstance = editorRef.current.getInstance();
+		editorInstance.setMarkdown(aiOutput);
+	}, [aiOutput]);
+
 	return (
 		<div className="border shadow-lg bg-secondary text-black">
 			<div className="flex justify-between items-center p-5">
