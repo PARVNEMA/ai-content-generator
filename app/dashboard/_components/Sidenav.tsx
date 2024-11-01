@@ -31,7 +31,7 @@ function Sidenav() {
 		{
 			name: "Settings",
 			icon: Settings,
-			path: "/dashboard/setting",
+			path: "/dashboard/settings",
 		},
 	];
 
@@ -64,7 +64,7 @@ function Sidenav() {
 					</Link>
 				))}
 			</div>
-			<div className="absolute bottom-10 lefot-0 w-full">
+			<div className="absolute bottom-10 left-0 w-full ">
 				{" "}
 				<UsageTrack />
 			</div>

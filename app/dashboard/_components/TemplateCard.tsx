@@ -5,7 +5,7 @@ import Link from "next/link";
 function TemplateCard(item: TEMPLATE) {
 	return (
 		<Link href={"/dashboard/content/" + item?.slug}>
-			<div className="p-10  shadow-white rounded-md flex flex-col gap-3 cursor-pointer hover:scale-105 transition-all mt-10 mx-2 shadow-inner">
+			<div className="p-5  shadow-blue-500 rounded-md flex flex-col gap-3 cursor-pointer hover:scale-105 transition-all mt-10 mx-2 shadow-md">
 				<Image
 					src={item.icon}
 					alt="icon"
@@ -13,7 +13,7 @@ function TemplateCard(item: TEMPLATE) {
 					width={50}
 				/>
 				<h2 className="font-medium text-lg">{item.name}</h2>
-				<p className="text-gray-400 line-clamp-5">
+				<p className="text-gray-400 line-clamp-3">
 					{item.desc}
 				</p>
 			</div>
