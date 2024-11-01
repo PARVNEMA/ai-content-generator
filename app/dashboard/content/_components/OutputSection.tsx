@@ -17,6 +17,10 @@ function OutputSection({ aiOutput }: props) {
 		editorInstance.setMarkdown(aiOutput);
 	}, [aiOutput]);
 
+	const copyToClipboard = (text: string) => {
+		navigator.clipboard.writeText(text);
+		alert("copied text to clipboard");
+	};
 	return (
 		<div className="border shadow-lg bg-secondary text-black">
 			<div className="flex justify-between items-center p-5">
@@ -25,7 +29,11 @@ function OutputSection({ aiOutput }: props) {
 				</h2>
 				<Button className={`active:bg-white`}>
 					{" "}
-					<Copy className="w-4 h-4 font-bold" /> Copy
+					<Copy
+						className="w-4 h-4 font-bold"
+						onClick={() => copyToClipboard(aiOutput)}
+					/>{" "}
+					Copy
 				</Button>
 			</div>
 			<Editor

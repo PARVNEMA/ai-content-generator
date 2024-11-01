@@ -9,6 +9,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React, { useEffect } from "react";
+import UsageTrack from "./UsageTrack";
 
 function Sidenav() {
 	const MenuList = [
@@ -37,7 +38,7 @@ function Sidenav() {
 	const path = usePathname();
 	useEffect(() => {});
 	return (
-		<div className="h-screen p-5 shadow-sm border-r border-primary">
+		<div className="h-screen p-5 shadow-sm border-r border-primary relative">
 			<div className="flex justify-center">
 				<Image
 					src={"/logo.svg"}
@@ -62,6 +63,10 @@ function Sidenav() {
 						</div>
 					</Link>
 				))}
+			</div>
+			<div className="absolute bottom-10 lefot-0 w-full">
+				{" "}
+				<UsageTrack />
 			</div>
 		</div>
 	);
