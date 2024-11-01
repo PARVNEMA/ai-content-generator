@@ -4,6 +4,7 @@ import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 
 import { Nunito, Noto_Sans } from "next/font/google";
+import { StarsBackground } from "@/components/ui/stars-background";
 
 export const metadata: Metadata = {
 	title: "Create Next App",

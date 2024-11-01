@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import SearchSectionTemplate from "./_components/SearchSectionTemplate";
 import TemplateListSection from "./_components/TemplateListSection";
 import { useDebounce } from "@uidotdev/usehooks";
+import { StarsBackground } from "@/components/ui/stars-background";
 function Dashboard() {
 	const [userSearchInput, setuserSearchInput] =
 		useState<string>();
@@ -13,7 +14,7 @@ function Dashboard() {
 	// console.log(debouncedSearchTerm);
 
 	return (
-		<div className="text-white">
+		<div className="text-white w-full h-full">
 			<SearchSectionTemplate
 				onSearchInput={(value: string) =>
 					setuserSearchInput(value)

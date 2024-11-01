@@ -2,6 +2,7 @@
 import Template from "@/app/(data)/Template";
 import React, { useEffect, useState } from "react";
 import TemplateCard from "./TemplateCard";
+import { StarsBackground } from "@/components/ui/stars-background";
 
 export interface TEMPLATE {
 	name: string;

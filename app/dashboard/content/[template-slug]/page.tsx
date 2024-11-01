@@ -1,5 +1,5 @@
 "use client";
-import React, { useContext, useState } from "react";
+import { useContext, useState } from "react";
 import FormSection from "../_components/FormSection";
 import OutputSection from "../_components/OutputSection";
 import { TEMPLATE } from "../../_components/TemplateListSection";
@@ -29,6 +29,7 @@ function CreateNewContent(props: PROPS) {
 	const { user } = useUser();
 	const { params } = props;
 	const router = useRouter();
+
 	const selectedTemplate: TEMPLATE | undefined =
 		Template?.find(
 			(item) => item.slug === params["template-slug"]
@@ -77,6 +78,7 @@ function CreateNewContent(props: PROPS) {
 			createdBy: user?.primaryEmailAddress?.emailAddress,
 			createdAt: moment().format("YYYY-MM-DD"),
 		});
+		console.log(result);
 	};
 	return (
 		<div className="p-5">

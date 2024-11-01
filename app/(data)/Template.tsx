@@ -57,6 +57,29 @@ export default [
 	},
 
 	{
+		name: "College Exams Answer Generator",
+		desc: "Use this tool to generate comprehensive and detailed answers for semester exam questions of any subject at a college or university level. Ensure that each answer is thorough, covers at least two pages, and is presented in a clear and structured point format.",
+		icon: "https://cdn-icons-png.flaticon.com/128/12886/12886027.png",
+		category: "Question/Answers",
+		slug: "college-exams-answers",
+		aiPrompt:
+			"you have to generate answer for college exams in points format the answer should be  rich text editor format",
+		form: [
+			{
+				label: "College Subject",
+				field: "input",
+				name: "subject",
+				required: true,
+			},
+			{
+				label: "Your Question",
+				field: "textarea",
+				name: "question",
+				required: true,
+			},
+		],
+	},
+	{
 		name: "Rewrite Article (Plagiarism Free)",
 		desc: "Use this tool to rewrite existing Article or Blog Post which can bypass AI detectors and also make it plagiarism free.",
 		icon: "https://cdn-icons-png.flaticon.com/128/3131/3131607.png",

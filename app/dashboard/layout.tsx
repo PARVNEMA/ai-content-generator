@@ -4,6 +4,7 @@ import Sidenav from "./_components/Sidenav";
 import Header from "./_components/Header";
 import { TotalUsageContext } from "../(context)/TotalUsageContext";
 import { UpdateCreditUsageContext } from "../(context)/UpdateCreditUsage";
+import { StarsBackground } from "@/components/ui/stars-background";
 
 function layout({
 	children,
@@ -23,14 +24,19 @@ function layout({
 				value={{ updatecreditusage, setupdatecreditusage }}
 			>
 				<div>
-					<div className="md:w-64 fixed md:block hidden h-sc">
+					<div className="md:w-64 fixed md:block hidden h-screen">
 						<Sidenav />
 					</div>
 					<div className="md:ml-64">
 						<Header />
+
 						{children}
 					</div>
 				</div>
+				<StarsBackground
+					starDensity={0.001}
+					className="h-screen -z-10 "
+				/>
 			</UpdateCreditUsageContext.Provider>
 		</TotalUsageContext.Provider>
 	);
