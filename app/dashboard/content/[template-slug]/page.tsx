@@ -74,7 +74,8 @@ function CreateNewContent(props: PROPS) {
 		await saveInDb(
 			JSON.stringify(formData),
 			selectedTemplate?.slug,
-			result.response.text()
+			result.response.text(),
+		
 		);
 		setloading(false);
 		setupdatecreditusage(Date.now());
@@ -83,24 +84,20 @@ function CreateNewContent(props: PROPS) {
 		formData: string | undefined,
 		slug: string | undefined,
 		aiResp: string | undefined,
-		user:
-			| { primaryEmailAddress: { emailAddress: string } }
-			| undefined
+		
 	) => {
 		if (!formData) throw new Error("formData is required");
 		if (!slug) throw new Error("slug is required");
 		if (!aiResp) throw new Error("aiResp is required");
 		if (!user?.primaryEmailAddress?.emailAddress)
 			throw new Error("user email is required");
-		const result = await db
-			.insert(AiOutput)
-			.values({
-				formData: formData,
-				templateSlug: slug,
-				aiResponse: aiResp,
-				createdBy: user.primaryEmailAddress.emailAddress,
-				createdAt: moment().format("YYYY-MM-DD"),
-			});
+		const result = await db.insert(AiOutput).values({
+			formData: formData,
+			templateSlug: slug,
+			aiResponse: aiResp,
+			createdBy: user.primaryEmailAddress.emailAddress,
+			createdAt: moment().format("YYYY-MM-DD"),
+		});
 		console.log(result);
 	};
 	return (
