@@ -1,5 +1,5 @@
 "use client";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import FormSection from "../_components/FormSection";
 import OutputSection from "../_components/OutputSection";
 import { TEMPLATE } from "../../_components/TemplateListSection";
@@ -17,9 +17,7 @@ import { useRouter } from "next/navigation";
 import { UpdateCreditUsageContext } from "@/app/(context)/UpdateCreditUsage";
 
 interface PROPS {
-	params: {
-		params: Promise<{ "template-slug": string }>;
-	};
+	params: Promise<{ "template-slug": string }>;
 }
 function CreateNewContent(props: PROPS) {
 	const [loading, setloading] = useState(false);
@@ -29,11 +27,22 @@ function CreateNewContent(props: PROPS) {
 	const { user } = useUser();
 	const { params } = props;
 	const router = useRouter();
-
+	const [resolvedParams, setResolvedParams] = useState<{
+		"template-slug": string;
+	} | null>(null);
+	useEffect(() => {
+		(async () => {
+			const unwrappedParams = await params;
+			setResolvedParams(unwrappedParams);
+		})();
+	}, [params]);
 	const selectedTemplate: TEMPLATE | undefined =
-		Template?.find(
-			(item) => item.slug === params["template-slug"]
-		);
+		resolvedParams
+			? Template?.find(
+					(item) =>
+						item.slug === resolvedParams["template-slug"]
+			  )
+			: undefined;
 	const { updatecreditusage, setupdatecreditusage } =
 		useContext(UpdateCreditUsageContext);
 
