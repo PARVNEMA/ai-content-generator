@@ -5,6 +5,7 @@ import Header from "./_components/Header";
 import { TotalUsageContext } from "../(context)/TotalUsageContext";
 import { UpdateCreditUsageContext } from "../(context)/UpdateCreditUsage";
 import { StarsBackground } from "@/components/ui/stars-background";
+import MobileSidenav from "./_components/MobileSideNav";
 
 function layout({
 	children,
@@ -15,6 +16,7 @@ function layout({
 	const [plan, setplan] = useState<number>(10);
 	const [updatecreditusage, setupdatecreditusage] =
 		useState();
+	const [sidebaropen, setsidebaropen] = useState(false);
 
 	return (
 		<TotalUsageContext.Provider
@@ -27,8 +29,22 @@ function layout({
 					<div className="md:w-64 fixed md:block hidden h-screen">
 						<Sidenav />
 					</div>
+					<div
+						className={`md:w-screen fixed md:hidden  h-screen  ${
+							sidebaropen ? "block" : "hidden"
+						}`}
+					>
+						<MobileSidenav
+							setsidebaropen={setsidebaropen}
+							sidebaropen={sidebaropen}
+						/>
+					</div>
+
 					<div className="md:ml-64">
-						<Header />
+						<Header
+							setsidebaropen={setsidebaropen}
+							sidebaropen={sidebaropen}
+						/>
 
 						{children}
 					</div>

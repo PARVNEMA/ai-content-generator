@@ -1,11 +1,18 @@
+import { Button } from "@/components/ui/button";
 import { UserButton } from "@clerk/nextjs";
-import { Search } from "lucide-react";
+import { MenuIcon, Search } from "lucide-react";
 import React from "react";
 
-function Header() {
+function Header({ setsidebaropen, sidebaropen }: any) {
 	return (
 		<div className="p-5 shadow-sm border-b-2 border-b-primary flex items-center justify-between w-full">
-			<div className="flex gap-2  p-2 border rounded-md max-w-lg text-white flex-grow">
+			<Button
+				onClick={() => setsidebaropen(!sidebaropen)}
+				className="md:hidden block z-10"
+			>
+				<MenuIcon />
+			</Button>
+			<div className=" gap-2  p-2 border rounded-md max-w-lg text-white flex-grow hidden md:flex">
 				<Search />
 				<input
 					type="text"

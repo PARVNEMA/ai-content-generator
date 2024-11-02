@@ -6,6 +6,7 @@ import { db } from "@/utils/db";
 import { AiOutput } from "@/utils/Schema";
 import { useUser } from "@clerk/nextjs";
 import { eq } from "drizzle-orm";
+import Link from "next/link";
 
 import React, {
 	useContext,
@@ -77,9 +78,11 @@ function UsageTrack() {
 					{toalUsage}/{plan} Credits used
 				</h2>
 			</div>
-			<Button className="w-full my-3 text-white">
-				Upgrade{" "}
-			</Button>
+			<Link href={"/dashboard/billing"}>
+				<Button className="w-full my-3 text-white">
+					Upgrade{" "}
+				</Button>
+			</Link>
 		</div>
 	);
 }

@@ -63,7 +63,7 @@ function HistoryPage() {
 	return (
 		<div className="container mx-auto p-6 text-white">
 			<h1 className="text-2xl font-bold mb-4 ">History</h1>
-			<div className="grid grid-cols-1 md:grid-cols-5 gap-4 text-center font-semibold bg-gray-200 p-2">
+			<div className=" hidden md:grid grid-cols-1 md:grid-cols-5 gap-4 text-center font-semibold bg-gray-200 p-2">
 				<div className="text-black">Template</div>
 				<div className="col-span-2 text-black">
 					AI Response
