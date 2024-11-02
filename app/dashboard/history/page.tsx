@@ -78,7 +78,7 @@ function HistoryPage() {
 				>
 					<div className="flex justify-center items-center gap-2">
 						<Image
-							src={image(item.templateSlug)?.icon}
+							src={image(item.templateSlug)?.icon ?? ""}
 							width={50}
 							height={50}
 							alt="logo"
