@@ -32,7 +32,7 @@ function FormSection({
 		<div className="p-5 shadow-lg border rounded-lg">
 			{/* @ts-ignore */}
 			<Image
-				src={selectedTemplate?.icon}
+				src={selectedTemplate?.icon ?? ""}
 				alt="icon"
 				width={70}
 				height={70}
