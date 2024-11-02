@@ -18,7 +18,7 @@ import { UpdateCreditUsageContext } from "@/app/(context)/UpdateCreditUsage";
 
 interface PROPS {
 	params: {
-		"template-slug": string;
+		params: Promise<{ "template-slug": string }>;
 	};
 }
 function CreateNewContent(props: PROPS) {
