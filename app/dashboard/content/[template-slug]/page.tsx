@@ -19,6 +19,13 @@ import { UpdateCreditUsageContext } from "@/app/(context)/UpdateCreditUsage";
 interface PROPS {
 	params: Promise<{ "template-slug": string }>;
 }
+interface AiOutput {
+	formData: string;
+	templateSlug: string;
+	aiResponse: string;
+	createdBy: string;
+	createdAt: string;
+}
 function CreateNewContent(props: PROPS) {
 	const [loading, setloading] = useState(false);
 	const [aiOutput, setaiOutput] = useState<string>("");
@@ -73,20 +80,27 @@ function CreateNewContent(props: PROPS) {
 		setupdatecreditusage(Date.now());
 	};
 	const saveInDb = async (
-		formData: any,
-		slug: any,
-		aiResp: any
+		formData: string | undefined,
+		slug: string | undefined,
+		aiResp: string | undefined,
+		user:
+			| { primaryEmailAddress: { emailAddress: string } }
+			| undefined
 	) => {
-		if (!formData) {
-			throw new Error("formData is required");
-		}
-		const result = await db.insert(AiOutput).values({
-			formData: formData,
-			templateSlug: slug,
-			aiResponse: aiResp,
-			createdBy: user?.primaryEmailAddress?.emailAddress,
-			createdAt: moment().format("YYYY-MM-DD"),
-		});
+		if (!formData) throw new Error("formData is required");
+		if (!slug) throw new Error("slug is required");
+		if (!aiResp) throw new Error("aiResp is required");
+		if (!user?.primaryEmailAddress?.emailAddress)
+			throw new Error("user email is required");
+		const result = await db
+			.insert(AiOutput)
+			.values({
+				formData: formData,
+				templateSlug: slug,
+				aiResponse: aiResp,
+				createdBy: user.primaryEmailAddress.emailAddress,
+				createdAt: moment().format("YYYY-MM-DD"),
+			});
 		console.log(result);
 	};
 	return (
