@@ -1,9 +1,11 @@
 "use client";
 import { TotalUsageContext } from "@/app/(context)/TotalUsageContext";
+import { useUser } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 
 function Billing() {
+	const { user } = useUser();
 	const { plan, setplan } = useContext(TotalUsageContext);
 	const router = useRouter();
 	const upgradesubscription = () => {
@@ -12,6 +14,18 @@ function Billing() {
 
 		router.push("/dashboard");
 	};
+	const verifyuser = () => {
+		user?.update({
+			unsafeMetadata: {
+				subscribed: true,
+			},
+		});
+	};
+	useEffect(() => {
+		if (user?.unsafeMetadata?.subscribed == true)
+			setplan(100);
+	}, []);
+
 	return (
 		<div className="text-white h-screen mt-10">
 			<div>
@@ -124,8 +138,8 @@ function Billing() {
 							</ul>
 							<button
 								type="button"
-								className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-200 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-900 font-medium rounded-lg text-sm px-5 py-2.5 inline-flex justify-center w-full text-center"
-								onClick={upgradesubscription}
+								className={`text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-200 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-900 font-medium rounded-lg text-sm px-5 py-2.5 inline-flex justify-center w-full text-center ${user?.unsafeMetadata?.subscribed} ? "disabled":"inline-flex"`}
+								onClick={verifyuser}
 							>
 								Choose plan
 							</button>

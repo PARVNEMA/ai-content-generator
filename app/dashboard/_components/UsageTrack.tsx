@@ -56,12 +56,25 @@ function UsageTrack() {
 
 	useEffect(() => {
 		user && getData(user);
+		if (user?.unsafeMetadata?.subscribed == true) {
+			setplan(100);
+		}
 	}, [user]);
 
 	useEffect(() => {
 		user && getData(user);
+		if (user?.unsafeMetadata?.subscribed == true) {
+			setplan(100);
+		}
 	}, [updatecreditusage]);
 
+	const verifyuser = () => {
+		user?.update({
+			unsafeMetadata: {
+				subscribed: true,
+			},
+		});
+	};
 	return (
 		<div className="m-5 ">
 			<div className=" bg-accent text-white p-3 rounded-lg">
@@ -70,7 +83,7 @@ function UsageTrack() {
 					<div
 						className="h-2 bg-white rounded-full"
 						style={{
-							width: (toalUsage / 10) * 100 + "%",
+							width: (toalUsage / 100) * 100 + "%",
 						}}
 					></div>
 				</div>
